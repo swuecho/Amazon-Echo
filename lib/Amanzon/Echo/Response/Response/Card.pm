@@ -1,4 +1,4 @@
-package Amanzon::Echo::Response::Card;
+package Amanzon::Echo::Response::Response::Card;
 use 5.008001;
 use Moose;
 
@@ -13,7 +13,7 @@ our $VERSION = "0.01";
     },
 =cut
 
-has 'type'     => ( isa => 'Str', is => 'ro' );
+has 'type'     => ( isa => 'Str', is => 'ro', default => 'Simple' );
 has 'title'    => ( isa => 'Str', is => 'ro' );
 has 'subtitle' => ( isa => 'Str', is => 'ro' );
 has 'content'  => ( isa => 'Str', is => 'ro' );

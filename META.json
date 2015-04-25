@@ -52,5 +52,19 @@
       }
    },
    "release_status" : "unstable",
-   "version" : "0.01"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/swuecho/Amazon-Echo/issues"
+      },
+      "homepage" : "https://github.com/swuecho/Amazon-Echo",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/swuecho/Amazon-Echo.git",
+         "web" : "https://github.com/swuecho/Amazon-Echo"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "Hao Wu <hwu@intellisurvey.com>"
+   ]
 }

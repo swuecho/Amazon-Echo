@@ -1,4 +1,4 @@
-package Amanzon::Echo::Response::Card;
+package Amanzon::Echo::Response::Response::OutputSpeech;
 use 5.008001;
 use Moose;
 
