@@ -13,11 +13,12 @@ our $VERSION = "0.01";
 
 =cut
 
-has 'type' => ( isa => 'Str', is => 'ro' );
+has 'type' => ( isa => 'Str', is => 'ro', default => 'PlainText' );
 has 'text' => ( isa => 'Str', is => 'ro' );
 
 # try to be smart,proivde a default to every method
 sub TO_JSON {
+    my $self = shift;
     return {
         "type" => $self->type,
         "text" => $self->text,
