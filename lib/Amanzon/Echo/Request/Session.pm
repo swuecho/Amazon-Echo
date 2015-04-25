@@ -28,7 +28,7 @@ has 'is_new' => (
     isa     => 'Bool',
     is      => 'rw',
     lazy    => 1,
-    builder => sub {
+    default => sub {
         shift->json->{new};
     }
 );
@@ -37,7 +37,7 @@ has 'session_id' => (
     isa     => 'Str',
     is      => 'rw',
     lazy    => 1,
-    builder => sub {
+    default => sub {
         shift->json->{sessionId};
     }
 );
@@ -46,14 +46,14 @@ has 'attributes' => (
     isa     => 'HashRef',
     is      => 'rw',
     lazy    => 1,
-    builder => sub { shift->json->{attributes} // {} }
+    default => sub { shift->json->{attributes} // {} }
 );
 
 has 'user' => (
     isa     => 'HashRef',
     is      => 'rw',
     lazy    => 1,
-    builder => sub { shift->json->{User} // {} }
+    default => sub { shift->json->{User} // {} }
 );
 
 1;
