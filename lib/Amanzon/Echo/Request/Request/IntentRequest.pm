@@ -1,4 +1,4 @@
-package Amanzon::Echo::Request::IntentRequest;
+package Amanzon::Echo::Request::Request::IntentRequest;
 use 5.008001;
 use Moose;
 
@@ -7,13 +7,46 @@ our $VERSION = "0.01";
 =for comment
 {
   "type": "string",
-  "requestId": "string"
+  "requestId": "string",
+  "intent": {
+    "name": "string",
+    "slots": {
+      "string": {
+        "name": "string",
+        "value": "string"
+      }
+    }
+  }
 }
+
 =cut
 
-has 'type'       => ( isa => 'Str',     is => 'ro' );
-has 'request_id' => ( isa => 'Str',     is => 'ro' );
-has 'intent'     => ( isa => 'HashRef', is => 'ro' );
+sub BUILDARGS {
+    my ( $class, $json ) = @_;
+    return { json => $json, };
+}
+
+has 'json' => ( isa => 'HashRef', is => 'ro' );
+
+has 'type' => ( isa => 'Str', is => 'ro', default => 'IntentRequest' );
+
+has 'request_id' => (
+    isa     => 'Str',
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        shift->json->{requestId};
+    }
+);
+
+has 'intent' => (
+    isa     => 'HashRef',
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        shift->json->{intent};
+    }
+);
 
 1;
 __END__
