@@ -27,19 +27,7 @@ sub BUILDARGS {
     my ( $class, $env ) = @_;
     my $plack_request = Plack::Request->new($env);
 
-#    my $echo_request_str;
-#    $placek_request->body->read( $echo_request_str,
-#        $plack_request->content_length );
-#    my $echo_request = decode_json($echo_request_str);
-#    my $session = $echo_request->session;    # bless it into Request Session
-#    my $echo_request_request =  $echo_request->request;  # bless it into Request Session
-    return {
-        _plack_request => $plack_request,
-
-        #        version        => $echo_request->version,
-        #        session        => $session,
-        #        request        => $echo_request_request,
-    };
+    return { _plack_request => $plack_request, };
 }
 
 has '_plack_request' => (
@@ -99,14 +87,16 @@ has 'request' => (
 sub _build_request {
     my $request_json = shift->json->{request};
     my $request_type = request_json->{type};
+
+    #TODO: request type error?
     if ( $request_type eq 'LaunchRequest' ) {
-        Amazon::Echo::Request::LaunchRequest->new();
+        Amazon::Echo::Request::Request::LaunchRequest->new($request_json);
     }
     elsif ( $request_type eq 'IntentRequest' ) {
-        Amazon::Echo::Request::IntentRequest->new();
+        Amazon::Echo::Request::Request::IntentRequest->new($request_json);
     }
     else {
-        Amazon::Echo::Request::SessionEndedRequest->new();
+        Amazon::Echo::Request::Request::SessionEndedRequest->new($request_json);
     }
 }
 

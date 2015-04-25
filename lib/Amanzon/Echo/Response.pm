@@ -28,6 +28,8 @@ our $VERSION = "0.01";
 }
 
 
+
+
     $res->content_type('application/json');
     $res->header( charset => 'UTF-8' );
     my $json = get_response_json();
@@ -39,12 +41,16 @@ has 'string' =>
   ( isa => 'Str', is => 'ro', lazy => 1, builder => '_build_string' );
 
 sub _build_string {
-    my $self = shift;
-    my $echo_request_str;
-    $self->body->read( $echo_request_str, $self->content_length );
-    return $echo_request_str;
-
+    my $self                 = shift;
+    my $echo_response_string = $self->response->TO_JSON;
+    return $echo_response_string;
 }
+
+has '_plack_response' => (
+    isa     => 'Plack::Response',
+    is      => 'rw',
+    handles => [ qw(header content_length body finalize ) ]
+);
 
 sub finialize_repsone {
     my $self = shift;
@@ -56,15 +62,6 @@ sub finialize_repsone {
     $self->finalize;
 }
 
-has '_plack_response' => (
-    isa     => 'Plack::Response',
-    is      => 'rw',
-    handles => [
-        qw(address base content content_encoding content_length content_type env header headers method
-          param parameters path path_info protocol referer remote_host request_uri scheme script_name)
-    ]
-);
-
 has 'version' => (
     isa     => 'Str',
     is      => 'ro',
@@ -74,12 +71,11 @@ has 'version' => (
 );
 
 has 'session_attributes' => (
-
-    #   isa  => 'Hashref',
-    is => 'ro',
+    isa => 'Hashref',
+    is  => 'ro',
 );
 
-has 'resoponse' => ( is => 'ro', );
+has 'resoponse' => ( is => 'ro' );
 
 1;
 __END__
