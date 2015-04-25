@@ -62,23 +62,24 @@ has '_plack_response' => (
     handles => [
         qw(address base content content_encoding content_length content_type env header headers method
           param parameters path path_info protocol referer remote_host request_uri scheme script_name)
+    ]
 );
 
 has 'version' => (
     isa     => 'Str',
     is      => 'ro',
     default => '1.0',
+
     #required => 1
 );
 
 has 'session_attributes' => (
-#   isa  => 'Hashref',
-    is   => 'ro',
+
+    #   isa  => 'Hashref',
+    is => 'ro',
 );
 
-has 'resoponse' => (
-    is   => 'ro',
-);
+has 'resoponse' => ( is => 'ro', );
 
 1;
 __END__
@@ -106,7 +107,7 @@ it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Hao Wu E<lt>hwu@intellisurvey.comE<gt>
+Hao Wu E<lt>echowuhao@gmail.comE<gt>
 
 =cut
 

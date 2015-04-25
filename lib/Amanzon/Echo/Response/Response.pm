@@ -21,15 +21,17 @@ our $VERSION = "0.01";
 =cut
 
 has 'card' => ( isa => 'Amazon::Echo::Response::Response::Card', is => 'rw' );
-has 'output_speech' => ( isa => 'Amazon::Echo::Response::Response::OutputSpeech', is => 'rw' );
+has 'output_speech' =>
+  ( isa => 'Amazon::Echo::Response::Response::OutputSpeech', is => 'rw' );
 has 'should_end_session ' => ( isa => 'Bool', is => 'rw' );
 
 sub TO_JSON {
-	my $self = shift;
-	return { ouputSpeech => $self->output_speech,
-		 card        => $self->card,
-    	    	shouldEndSession => $self->should_end_session
-	 };
+    my $self = shift;
+    return {
+        ouputSpeech      => $self->output_speech,
+        card             => $self->card,
+        shouldEndSession => $self->should_end_session
+    };
 }
 
 1;
@@ -58,7 +60,7 @@ it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Hao Wu E<lt>hwu@intellisurvey.comE<gt>
+Hao Wu E<lt>echowuhao@gmail.comE<gt>
 
 =cut
 

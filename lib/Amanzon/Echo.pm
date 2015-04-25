@@ -5,8 +5,6 @@ use warnings;
 
 our $VERSION = "0.01";
 
-
-
 1;
 __END__
 
@@ -33,7 +31,7 @@ it under the same terms as Perl itself.
 
 =head1 AUTHOR
 
-Hao Wu E<lt>hwu@intellisurvey.comE<gt>
+Hao Wu E<lt>echowuhao@gmail.comE<gt>
 
 =cut
 

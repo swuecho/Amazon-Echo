@@ -1,7 +1,7 @@
 {
    "abstract" : "It's new $module",
    "author" : [
-      "Hao Wu <hwu@intellisurvey.com>"
+      "Hao Wu <echowuhao@gmail.com>"
    ],
    "dynamic_config" : 0,
    "generated_by" : "Minilla/v2.3.0, CPAN::Meta::Converter version 2.150001",
