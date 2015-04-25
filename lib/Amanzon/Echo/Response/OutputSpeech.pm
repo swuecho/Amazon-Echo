@@ -1,18 +1,28 @@
-package Amanzon::Echo::Request::LaunchRequest;
+package Amanzon::Echo::Response::Card;
 use 5.008001;
 use Moose;
 
 our $VERSION = "0.01";
 
 =for comment
-{
-  "type": "string",
-  "requestId": "string"
-}
+
+"outputSpeech": {
+      "type": "string",
+      "text": "string"
+    },
+
 =cut
 
-has 'type'       => ( isa => 'Str', is => 'ro' );
-has 'request_id' => ( isa => 'Str', is => 'ro' );
+has 'type' => ( isa => 'Str', is => 'ro' );
+has 'text' => ( isa => 'Str', is => 'ro' );
+
+# try to be smart,proivde a default to every method
+sub TO_JSON {
+    return {
+        "type" => $self->type,
+        "text" => $self->text,
+    };
+}
 
 1;
 __END__
