@@ -1,0 +1,4 @@
+name = "Amanzon-Echo"
+# badges = ["travis"]
+module_maker="ModuleBuildTiny"
+
