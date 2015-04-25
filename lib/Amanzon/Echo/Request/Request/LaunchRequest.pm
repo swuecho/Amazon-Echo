@@ -1,4 +1,4 @@
-package Amanzon::Echo::Request::LaunchRequest;
+package Amanzon::Echo::Request::Request::LaunchRequest;
 use 5.008001;
 use Moose;
 
@@ -11,8 +11,23 @@ our $VERSION = "0.01";
 }
 =cut
 
-has 'type'       => ( isa => 'Str', is => 'ro' );
-has 'request_id' => ( isa => 'Str', is => 'ro' );
+sub BUILDARGS {
+    my ( $class, $json ) = @_;
+    return { json => $json, };
+}
+
+has 'json' => ( isa => 'HashRef', is => 'ro' );
+
+has 'type' => ( isa => 'Str', is => 'ro', default => 'LaunchRequest' );
+
+has 'request_id' => (
+    isa     => 'Str',
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        shift->json->{requestId};
+    }
+);
 
 1;
 __END__

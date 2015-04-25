@@ -1,21 +1,46 @@
-package Amanzon::Echo::Request::SessionEndedRequest;
+package Amanzon::Echo::Request::Request::SessionEndedRequest;
 use 5.008001;
 use Moose;
-
-extends 'Amanzon::Echo::Request::IntentRequest';
 
 our $VERSION = "0.01";
 
 =for comment
 {
   "type": "string",
-  "requestId": "string"
+  "requestId": "string",
+  "reason": "string"
 }
 =cut
 
-has 'type'       => ( isa => 'Str', is => 'ro' );
-has 'request_id' => ( isa => 'Str', is => 'ro' );
-has 'reason'     => ( isa => 'Str', is => 'ro' );
+sub BUILDARGS {
+    my ( $class, $json ) = @_;
+    return { json => $json, };
+}
+
+has 'json' => ( isa => 'HashRef', is => 'ro' );
+
+has 'type' => ( isa => 'Str', is => 'ro', default => 'SessionEndedRequest' );
+has 'request_id' => (
+    isa     => 'Str',
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        shift->json->{requestId};
+    }
+);
+
+# USER_INITIATED – Indicates that the user explicitly ended the session.
+# ERROR – Indicates that an error occurred that caused the session to end.
+# EXCEEDED_MAX_REPROMPTS - Indicates that the user either did not respond
+# or responded with an utterance that did not match any of your app’s intents |
+has 'reason' => (
+    isa     => 'Str',
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        shift->json->{resaon};
+    }
+);
 
 1;
 __END__

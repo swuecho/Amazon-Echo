@@ -2,8 +2,6 @@ package Amanzon::Echo::Request::IntentRequest;
 use 5.008001;
 use Moose;
 
-extends 'Amanzon::Echo::Request::IntentRequest';
-
 our $VERSION = "0.01";
 
 =for comment
