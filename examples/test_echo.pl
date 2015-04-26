@@ -22,9 +22,9 @@ my $speech= Amazon::Echo::Response::Response::OutputSpeech->new(
 # generate response
 sub get_response {
     my $response = Amazon::Echo::Response::Response->new( 
-            "output_speech" => $speech,
+            "outputSpeech" => $speech,
             "card" => $card,
-            "shouldEndSession" => \1
+            "shouldEndSession" => \0
     );
 
     return $response;
