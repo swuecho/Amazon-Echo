@@ -12,11 +12,10 @@ our $VERSION = "0.01";
 }
 =cut
 
-
 has 'type' => ( isa => 'Str', is => 'ro', default => 'SessionEndedRequest' );
 has 'requestId' => (
-    isa     => 'Str',
-    is      => 'ro',
+    isa => 'Str',
+    is  => 'ro',
 );
 
 # USER_INITIATED – Indicates that the user explicitly ended the session.
@@ -24,8 +23,8 @@ has 'requestId' => (
 # EXCEEDED_MAX_REPROMPTS - Indicates that the user either did not respond
 # or responded with an utterance that did not match any of your app’s intents |
 has 'reason' => (
-    isa     => 'Str',
-    is      => 'ro',
+    isa => 'Str',
+    is  => 'ro',
 );
 
 1;

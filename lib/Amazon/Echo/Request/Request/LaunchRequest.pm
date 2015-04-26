@@ -14,8 +14,8 @@ our $VERSION = "0.01";
 has 'type' => ( isa => 'Str', is => 'ro', default => 'LaunchRequest' );
 
 has 'requestId' => (
-    isa     => 'Str',
-    is      => 'ro',
+    isa => 'Str',
+    is  => 'ro',
 );
 
 1;

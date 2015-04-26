@@ -24,13 +24,13 @@ our $VERSION = "0.01";
 has 'type' => ( isa => 'Str', is => 'ro', default => 'IntentRequest' );
 
 has 'requestId' => (
-    isa     => 'Str',
-    is      => 'ro',
+    isa => 'Str',
+    is  => 'ro',
 );
 
 has 'intent' => (
-    isa     => 'HashRef',
-    is      => 'ro',
+    isa => 'HashRef',
+    is  => 'ro',
 );
 
 1;

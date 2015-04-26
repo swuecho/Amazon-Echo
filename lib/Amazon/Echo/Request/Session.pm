@@ -16,31 +16,32 @@ our $VERSION = "0.01";
     }
 }
 =cut
+
 # change the name new to is_new
 # because moose provides a new method by default
 around BUILDARGS => sub {
-      my ($orig, $class, $request_href)  = @_;
-      return $class->$orig( is_new => $request_href->{new}, %$request_href );
+    my ( $orig, $class, $request_href ) = @_;
+    return $class->$orig( is_new => $request_href->{new}, %$request_href );
 };
 
 has 'is_new' => (
-    isa     => 'Bool',
-    is      => 'ro',
+    isa => 'Bool',
+    is  => 'ro',
 );
 
 has 'sessionId' => (
-    isa     => 'Str',
-    is      => 'ro',
+    isa => 'Str',
+    is  => 'ro',
 );
 
 has 'attributes' => (
-    isa     => 'HashRef',
-    is      => 'ro',
+    isa => 'HashRef',
+    is  => 'ro',
 );
 
 has 'user' => (
-    isa     => 'HashRef',
-    is      => 'ro',
+    isa => 'HashRef',
+    is  => 'ro',
 );
 
 1;

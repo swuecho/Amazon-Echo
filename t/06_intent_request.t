@@ -21,7 +21,7 @@ my $json = {
 };
 
 my $req = Amazon::Echo::Request::Request::IntentRequest->new($json);
-is( $req->type,       $json->{type},      'not new' );
+is( $req->type,      $json->{type},      'not new' );
 is( $req->requestId, $json->{requestId}, 'right request id' );
-is( $req->intent,     $json->{intent},    'right intent' );
+is( $req->intent,    $json->{intent},    'right intent' );
 

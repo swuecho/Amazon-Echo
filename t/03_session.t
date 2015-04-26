@@ -20,6 +20,6 @@ my $json = {
 
 my $session = Amazon::Echo::Request::Session->new($json);
 is( $session->is_new,     0,                   'not new' );
-is( $session->sessionId, $json->{sessionId},  'right session id' );
+is( $session->sessionId,  $json->{sessionId},  'right session id' );
 is( $session->attributes, $json->{attributes}, 'right attributes' );
 

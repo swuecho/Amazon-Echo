@@ -12,6 +12,6 @@ my $json = {
 };
 
 my $req = Amazon::Echo::Request::Request::LaunchRequest->new($json);
-is( $req->type,       $json->{type},      'lanch request' );
+is( $req->type,      $json->{type},      'lanch request' );
 is( $req->requestId, $json->{requestId}, 'right request id' );
 

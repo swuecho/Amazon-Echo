@@ -13,6 +13,6 @@ my $json = {
 };
 
 my $req = Amazon::Echo::Request::Request::SessionEndedRequest->new($json);
-is( $req->type,       $json->{type},      'not new' );
+is( $req->type,      $json->{type},      'not new' );
 is( $req->requestId, $json->{requestId}, 'right request id' );
 
