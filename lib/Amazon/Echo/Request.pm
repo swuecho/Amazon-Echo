@@ -3,6 +3,10 @@ use 5.008001;
 use Moose;
 use Plack::Request;
 use JSON::XS;
+use Amazon::Echo::Request::Session;
+use Amazon::Echo::Request::Request::LaunchRequest;
+use Amazon::Echo::Request::Request::IntentRequest;
+use Amazon::Echo::Request::Request::SessionEndedRequest;
 
 our $VERSION = "0.01";
 
@@ -34,8 +38,8 @@ has '_plack_request' => (
     isa     => 'Plack::Request',
     is      => 'rw',
     handles => [
-        qw(address base content content_encoding content_length content_type env header headers method
-          param parameters path path_info protocol referer remote_host request_uri scheme script_name
+        qw(address base content body content_encoding content_length content_type env header headers method
+          param parameters path path_info protocol referer remote_host request_uri scheme script_name new_response
           secure upload uploads uri user_agent)
     ],
 );
@@ -51,27 +55,27 @@ sub _build_string {
     return $echo_request_str;
 
 }
+#TODO: buid a JSON type
+has 'json' => ( isa => 'HashRef', is => 'ro', lazy => 1, builder => '_build_json' );
 
-has 'json' => ( isa => 'Str', is => 'ro', lazy => 1, builder => '_build_json' );
-
-sub _build_request_str {
+sub _build_json {
     my $self         = shift;
-    my $echo_request = decode_json($echo_request_str);
-    return $recho_request;
+    my $echo_request = decode_json($self->string);
+    return $echo_request;
 }
 
 has 'version' => (
     isa     => 'Str',
     is      => 'ro',
     lazy    => 1,
-    builder => sub { shift->json->version }
+    default => sub { shift->json->version }
 );
 
 has 'session' => (
     isa  => 'Amazon::Echo::Request::Session',
     is   => 'ro',
     lazy => 1,
-    builder =>
+    default =>
       sub { Amazon::Echo::Request::Session->new( shift->json->{session} ) }
 );
 
@@ -79,7 +83,7 @@ has 'request' => (
 
     #simplify the type enum
     isa =>
-'Amazon::Echo::Request::LaunchRequest|Amazon::Echo::Request::IntentRequest|Amazon::Echo::Request::SessionEndedRequest',
+'Amazon::Echo::Request::Request::LaunchRequest|Amazon::Echo::Request::Request::IntentRequest|Amazon::Echo::Request::Request::SessionEndedRequest',
     is      => 'rw',
     lazy    => 1,
     builder => '_build_request',
@@ -87,7 +91,7 @@ has 'request' => (
 
 sub _build_request {
     my $request_json = shift->json->{request};
-    my $request_type = request_json->{type};
+    my $request_type = $request_json->{type};
 
     #TODO: request type error?
     if ( $request_type eq 'LaunchRequest' ) {
@@ -101,6 +105,11 @@ sub _build_request {
     }
 }
 
+sub response {
+   my $self = shift;
+   require Amazon::Echo::Response;
+   return Amazon::Echo::Response->new(@_);
+}
 1;
 __END__
 

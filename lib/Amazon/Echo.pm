@@ -4,6 +4,26 @@ use strict;
 use warnings;
 
 our $VERSION = "0.01";
+use Moose::Util::TypeConstraints;
+ 
+subtype 'Natural',
+    as 'Int',
+    where { $_ > 0 };
+ 
+subtype 'NaturalLessThanTen',
+    as 'Natural',
+    where { $_ < 10 },
+    message { "This number ($_) is not less than ten!" };
+ 
+class_type 'DateTimeClass', { class => 'DateTime' };
+ 
+#role_type 'Barks', { role => 'Some::Library::Role::Barks' };
+ 
+enum 'Request', [qw(red green blue)];
+ 
+union 'StringOrArray', [qw( Str ArrayRef )];
+ 
+no Moose::Util::TypeConstraints;
 
 1;
 __END__
