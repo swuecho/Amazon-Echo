@@ -2,7 +2,7 @@ use strict;
 use Test::More tests => 5;
 
 use_ok $_ for qw(
-  Amanzon::Echo::Request::Request::IntentRequest
+  Amazon::Echo::Request::Request::IntentRequest
 );
 
 my $json = {
@@ -20,7 +20,7 @@ my $json = {
     }
 };
 
-my $req = Amanzon::Echo::Request::Request::IntentRequest->new($json);
+my $req = Amazon::Echo::Request::Request::IntentRequest->new($json);
 is_deeply( $req->json, $json, "get the same json" );
 is( $req->type,       $json->{type},      'not new' );
 is( $req->request_id, $json->{requestId}, 'right request id' );

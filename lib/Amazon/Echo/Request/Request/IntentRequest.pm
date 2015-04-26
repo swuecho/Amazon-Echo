@@ -1,4 +1,4 @@
-package Amanzon::Echo::Request::Request::SessionEndedRequest;
+package Amazon::Echo::Request::Request::IntentRequest;
 use 5.008001;
 use Moose;
 
@@ -8,8 +8,17 @@ our $VERSION = "0.01";
 {
   "type": "string",
   "requestId": "string",
-  "reason": "string"
+  "intent": {
+    "name": "string",
+    "slots": {
+      "string": {
+        "name": "string",
+        "value": "string"
+      }
+    }
+  }
 }
+
 =cut
 
 sub BUILDARGS {
@@ -19,7 +28,8 @@ sub BUILDARGS {
 
 has 'json' => ( isa => 'HashRef', is => 'ro' );
 
-has 'type' => ( isa => 'Str', is => 'ro', default => 'SessionEndedRequest' );
+has 'type' => ( isa => 'Str', is => 'ro', default => 'IntentRequest' );
+
 has 'request_id' => (
     isa     => 'Str',
     is      => 'rw',
@@ -29,16 +39,12 @@ has 'request_id' => (
     }
 );
 
-# USER_INITIATED – Indicates that the user explicitly ended the session.
-# ERROR – Indicates that an error occurred that caused the session to end.
-# EXCEEDED_MAX_REPROMPTS - Indicates that the user either did not respond
-# or responded with an utterance that did not match any of your app’s intents |
-has 'reason' => (
-    isa     => 'Str',
+has 'intent' => (
+    isa     => 'HashRef',
     is      => 'rw',
     lazy    => 1,
     default => sub {
-        shift->json->{resaon};
+        shift->json->{intent};
     }
 );
 
@@ -49,15 +55,15 @@ __END__
 
 =head1 NAME
 
-Amanzon::Echo - It's new $module
+Amazon::Echo - It's new $module
 
 =head1 SYNOPSIS
 
-    use Amanzon::Echo;
+    use Amazon::Echo;
 
 =head1 DESCRIPTION
 
-Amanzon::Echo is ...
+Amazon::Echo is ...
 
 =head1 LICENSE
 

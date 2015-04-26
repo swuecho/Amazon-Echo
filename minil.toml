@@ -1,4 +1,4 @@
-name = "Amanzon-Echo"
-# badges = ["travis"]
+name = "Amazon-Echo"
+badges = ["travis"]
 module_maker="ModuleBuildTiny"
 

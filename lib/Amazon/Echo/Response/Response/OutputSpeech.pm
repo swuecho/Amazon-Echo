@@ -1,4 +1,4 @@
-package Amanzon::Echo::Response::Response::OutputSpeech;
+package Amazon::Echo::Response::Response::OutputSpeech;
 use 5.008001;
 use Moose;
 
@@ -32,15 +32,15 @@ __END__
 
 =head1 NAME
 
-Amanzon::Echo - It's new $module
+Amazon::Echo - It's new $module
 
 =head1 SYNOPSIS
 
-    use Amanzon::Echo;
+    use Amazon::Echo;
 
 =head1 DESCRIPTION
 
-Amanzon::Echo is ...
+Amazon::Echo is ...
 
 =head1 LICENSE
 

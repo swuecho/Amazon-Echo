@@ -1,14 +1,15 @@
+[![Build Status](https://travis-ci.org/swuecho/Amazon-Echo.svg?branch=master)](https://travis-ci.org/swuecho/Amazon-Echo)
 # NAME
 
-Amanzon::Echo - It's new $module
+Amazon::Echo - It's new $module
 
 # SYNOPSIS
 
-    use Amanzon::Echo;
+    use Amazon::Echo;
 
 # DESCRIPTION
 
-Amanzon::Echo is ...
+Amazon::Echo is ...
 
 # LICENSE
 

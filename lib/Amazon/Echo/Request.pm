@@ -1,4 +1,4 @@
-package Amanzon::Echo::Request;
+package Amazon::Echo::Request;
 use 5.008001;
 use Moose;
 use Plack::Request;
@@ -45,7 +45,8 @@ has 'string' =>
 
 sub _build_string {
     my $self = shift;
-    my $echo_request_str;
+    my $echo_request_str; 
+    die "not a post request" if $self->method ne 'POST';
     $self->body->read( $echo_request_str, $self->content_length );
     return $echo_request_str;
 
@@ -107,15 +108,15 @@ __END__
 
 =head1 NAME
 
-Amanzon::Echo - It's new $module
+Amazon::Echo - It's new $module
 
 =head1 SYNOPSIS
 
-    use Amanzon::Echo;
+    use Amazon::Echo;
 
 =head1 DESCRIPTION
 
-Amanzon::Echo is ...
+Amazon::Echo is ...
 
 =head1 LICENSE
 

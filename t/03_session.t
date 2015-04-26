@@ -2,7 +2,7 @@ use strict;
 use Test::More tests => 5;
 
 use_ok $_ for qw(
-  Amanzon::Echo::Request::Session
+  Amazon::Echo::Request::Session
 );
 
 my $json = {
@@ -18,7 +18,7 @@ my $json = {
     },
 };
 
-my $session = Amanzon::Echo::Request::Session->new($json);
+my $session = Amazon::Echo::Request::Session->new($json);
 is_deeply( $session->json, $json, "get the same json" );
 is( $session->is_new,     0,                   'not new' );
 is( $session->session_id, $json->{sessionId},  'right session id' );

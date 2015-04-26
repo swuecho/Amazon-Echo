@@ -2,7 +2,7 @@ use strict;
 use Test::More tests => 4;
 
 use_ok $_ for qw(
-  Amanzon::Echo::Request::Request::SessionEndedRequest
+  Amazon::Echo::Request::Request::SessionEndedRequest
 );
 
 my $json = {
@@ -12,7 +12,7 @@ my $json = {
     "reason" => "USER_INITIATED"
 };
 
-my $req = Amanzon::Echo::Request::Request::SessionEndedRequest->new($json);
+my $req = Amazon::Echo::Request::Request::SessionEndedRequest->new($json);
 is_deeply( $req->json, $json, "get the same json" );
 is( $req->type,       $json->{type},      'not new' );
 is( $req->request_id, $json->{requestId}, 'right request id' );
