@@ -1,4 +1,3 @@
-use lib '/home/hwu/Amazon-Echo/lib/';
 use Amazon::Echo::Request;
 use Amazon::Echo::Response::Response;
 use Amazon::Echo::Response::Response::Card;

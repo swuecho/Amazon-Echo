@@ -1,9 +1,8 @@
-use lib '/home/hwu/Amazon-Echo/lib/';
 use Amazon::Echo::Request;
 
 sub text {
 	my $rand     = int rand(100);
-	my $text = "Your luck number is $rand"
+	my $text = "Your luck number is $rand";
 	return $text
 }
 

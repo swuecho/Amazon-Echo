@@ -6,6 +6,7 @@ use Amazon::Echo::Response::Response;
 use JSON::XS;
 our $VERSION = "0.01";
 
+with 'Amazon::Echo::TOJSON';
 my $json = JSON::XS->new->convert_blessed(1);
 
 =for comment
@@ -52,8 +53,6 @@ sub finalize_response {
     my $string = $json->encode($self);
     $self->content_length( length $string );
     $self->body($string);
-    use DDP;
-    p $string;
     $self->finalize;
 }
 

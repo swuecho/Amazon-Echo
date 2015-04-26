@@ -1,4 +1,3 @@
-use lib '/home/hwu/Amazon-Echo/lib/';
 use DDP;
 use MongoDB;
 use Amazon::Echo::Request;
