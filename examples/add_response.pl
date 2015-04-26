@@ -18,11 +18,11 @@ my $speech= Amazon::Echo::Response::Response::OutputSpeech->new(
 );
 
 # generate response
- my $response = Amazon::Echo::Response::Response->new( 
+my $response = Amazon::Echo::Response::Response->new( 
             "outputSpeech" => $speech,
             "card" => $card,
             "shouldEndSession" => \0
- );
+);
 
 
 # the sub is the app
@@ -31,6 +31,6 @@ sub {
     my $env = shift;
     my $req = Amazon::Echo::Request->new($env);
     my $res = $req->response();  
-    $res->response(get_response);
+    $res->speech_text($speech->text);
     $res->finalize_response;
 };

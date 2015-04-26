@@ -49,18 +49,20 @@ has 'string' =>
 
 sub _build_string {
     my $self = shift;
-    my $echo_request_str; 
+    my $echo_request_str;
     die "not a post request" if $self->method ne 'POST';
     $self->body->read( $echo_request_str, $self->content_length );
     return $echo_request_str;
 
 }
+
 #TODO: buid a JSON type
-has 'json' => ( isa => 'HashRef', is => 'ro', lazy => 1, builder => '_build_json' );
+has 'json' =>
+  ( isa => 'HashRef', is => 'ro', lazy => 1, builder => '_build_json' );
 
 sub _build_json {
     my $self         = shift;
-    my $echo_request = decode_json($self->string);
+    my $echo_request = decode_json( $self->string );
     return $echo_request;
 }
 
@@ -106,9 +108,9 @@ sub _build_request {
 }
 
 sub response {
-   my $self = shift;
-   require Amazon::Echo::Response;
-   return Amazon::Echo::Response->new(@_);
+    my $self = shift;
+    require Amazon::Echo::Response;
+    return Amazon::Echo::Response->new(@_);
 }
 1;
 __END__

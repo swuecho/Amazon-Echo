@@ -2,6 +2,7 @@ package Amazon::Echo::Response;
 use 5.008001;
 use Moose;
 use Plack::Response;
+use Amazon::Echo::Response::Response;
 use JSON::XS;
 our $VERSION = "0.01";
 
@@ -28,28 +29,18 @@ my $json = JSON::XS->new->convert_blessed(1);
   }
 }
 
-
-
-
-    $res->content_type('application/json');
-    $res->header( charset => 'UTF-8' );
-    my $json = get_response_json();
-    $res->body($json);
-    $res->content_length( length $json );
 =cut
 
-
 sub BUILDARGS {
-    my $class = shift;
+    my $class          = shift;
     my $plack_response = Plack::Response->new(200);
-    return { _plack_response => $plack_response};
+    return { _plack_response => $plack_response };
 }
-
 
 has '_plack_response' => (
     isa     => 'Plack::Response',
     is      => 'rw',
-    handles => [ qw(header content_length content_type body finalize ) ]
+    handles => [qw(header content_length content_type body finalize )]
 );
 
 has 'string' =>
@@ -57,7 +48,7 @@ has 'string' =>
 
 sub _build_string {
     my $self                 = shift;
-    my $echo_response_string = $json->encode($self->response);
+    my $echo_response_string = $json->encode( $self->response );
     return $echo_response_string;
 }
 
@@ -66,7 +57,7 @@ sub finalize_response {
     $self->content_type('application/json');
     $self->header( charset => 'UTF-8' );
     my $string = $self->string;
-    $self->content_length( length $string);
+    $self->content_length( length $string );
     $self->body($string);
     $self->finalize;
 }
@@ -84,7 +75,14 @@ has 'sessionAttributes' => (
     is  => 'ro',
 );
 
-has 'response' => ( is => 'rw' );
+has 'response' => (
+    isa     => 'Amazon::Echo::Response::Response',
+    is      => 'rw',
+    handles => { speech_text => 'speech_text' },
+    default => sub { Amazon::Echo::Response::Response->new() }
+);
+
+
 
 1;
 __END__

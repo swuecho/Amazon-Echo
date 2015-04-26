@@ -21,12 +21,16 @@ our $VERSION = "0.01";
 =cut
 
 has 'card' => ( isa => 'Amazon::Echo::Response::Response::Card', is => 'rw' );
-has 'outputSpeech' =>
-  ( isa => 'Amazon::Echo::Response::Response::OutputSpeech', is => 'rw' );
+has 'outputSpeech' => (
+    isa     => 'Amazon::Echo::Response::Response::OutputSpeech',
+    is      => 'rw',
+    handles => { speech_text => 'text' },
+    default => sub { Amazon::Echo::Response::Response::OutputSpeech->new() }
+);
 
 # booleand TODO
 #
-has 'shouldEndSession' => ( is => 'rw', default => sub {\1}  );
+has 'shouldEndSession' => ( is => 'rw', default => sub { \1 } );
 
 sub TO_JSON {
     my $self = shift;

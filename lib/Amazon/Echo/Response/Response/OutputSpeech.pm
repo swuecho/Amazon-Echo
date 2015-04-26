@@ -14,7 +14,8 @@ our $VERSION = "0.01";
 =cut
 
 has 'type' => ( isa => 'Str', is => 'ro', default => 'PlainText' );
-has 'text' => ( isa => 'Str', is => 'ro' );
+has 'text' =>
+  ( isa => 'Str', is => 'ro', default => 'sorry, not response available' );
 
 # try to be smart,proivde a default to every method
 sub TO_JSON {
