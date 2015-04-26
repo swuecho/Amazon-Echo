@@ -29,7 +29,7 @@ __END__
 
 =head1 NAME
 
-Amazon::Echo - It's new $module
+Amazon::Echo - alexa!
 
 =head1 SYNOPSIS
 
@@ -37,7 +37,7 @@ Amazon::Echo - It's new $module
 
 =head1 DESCRIPTION
 
-Amazon::Echo is ...
+Amazon::Echo is a wrapper around Plack to make develop service for Amazon Echo easy
 
 =head1 LICENSE
 
