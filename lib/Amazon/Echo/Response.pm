@@ -44,11 +44,11 @@ has '_plack_response' => (
     handles => [qw(header content_length content_type body finalize )]
 );
 
-
 sub finalize_response {
     my $self = shift;
     $self->content_type('application/json');
     $self->header( charset => 'UTF-8' );
+
     # encode $self to a json string
     my $string = $json->encode($self);
     $self->content_length( length $string );
