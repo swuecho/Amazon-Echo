@@ -16,44 +16,31 @@ our $VERSION = "0.01";
     }
 }
 =cut
-
-sub BUILDARGS {
-    my ( $class, $json ) = @_;
-    return { json => $json };
-}
-
-has 'json' => ( isa => 'HashRef', is => 'ro' );
+# change the name new to is_new
+# because moose provides a new method by default
+around BUILDARGS => sub {
+      my ($orig, $class, $request_href)  = @_;
+      return $class->$orig( is_new => $request_href->{new}, %$request_href );
+};
 
 has 'is_new' => (
     isa     => 'Bool',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{new};
-    }
+    is      => 'ro',
 );
 
-has 'session_id' => (
+has 'sessionId' => (
     isa     => 'Str',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{sessionId};
-    }
+    is      => 'ro',
 );
 
 has 'attributes' => (
     isa     => 'HashRef',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub { shift->json->{attributes} // {} }
+    is      => 'ro',
 );
 
 has 'user' => (
     isa     => 'HashRef',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub { shift->json->{User} // {} }
+    is      => 'ro',
 );
 
 1;
