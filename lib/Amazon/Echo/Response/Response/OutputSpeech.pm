@@ -1,6 +1,7 @@
 package Amazon::Echo::Response::Response::OutputSpeech;
 use 5.008001;
 use Moose;
+with 'Amazon::Echo::TOJSON';
 
 our $VERSION = "0.01";
 
@@ -16,15 +17,6 @@ our $VERSION = "0.01";
 has 'type' => ( isa => 'Str', is => 'rw', default => 'PlainText' );
 has 'text' =>
   ( isa => 'Str', is => 'rw', default => 'sorry, not response available' );
-
-# try to be smart,proivde a default to every method
-sub TO_JSON {
-    my $self = shift;
-    return {
-        "type" => $self->type,
-        "text" => $self->text,
-    };
-}
 
 1;
 __END__

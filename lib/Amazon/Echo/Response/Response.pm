@@ -3,6 +3,8 @@ use 5.008001;
 use Moose;
 use Amazon::Echo::Response::Response::OutputSpeech;
 
+with 'Amazon::Echo::TOJSON';
+
 our $VERSION = "0.01";
 
 =for comment
@@ -32,16 +34,6 @@ has 'outputSpeech' => (
 # booleand TODO
 #
 has 'shouldEndSession' => ( is => 'rw', default => sub { \0 } );
-
-sub TO_JSON {
-    my $self = shift;
-    return {
-        outputSpeech => $self->outputSpeech,
-
-        #        card             => $self->card,
-        shouldEndSession => $self->shouldEndSession
-    };
-}
 
 1;
 __END__
