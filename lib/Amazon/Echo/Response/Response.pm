@@ -23,12 +23,15 @@ our $VERSION = "0.01";
 has 'card' => ( isa => 'Amazon::Echo::Response::Response::Card', is => 'rw' );
 has 'output_speech' =>
   ( isa => 'Amazon::Echo::Response::Response::OutputSpeech', is => 'rw' );
-has 'should_end_session ' => ( isa => 'Bool', is => 'rw' );
+
+# booleand TODO
+#
+has 'should_end_session' => ( is => 'rw', default => sub {\1}  );
 
 sub TO_JSON {
     my $self = shift;
     return {
-        ouputSpeech      => $self->output_speech,
+        outputSpeech      => $self->output_speech,
         card             => $self->card,
         shouldEndSession => $self->should_end_session
     };
