@@ -5,25 +5,12 @@ use Amazon::Echo::Response::Response::Card;
 use Amazon::Echo::Response::Response::OutputSpeech;
 use JSON::XS;
 use DDP;
-my $rand     = int rand(100);
 
-my $card = Amazon::Echo::Response::Response::Card->new(
-                "title"    => "Lucky Number",
-                "subtitle" => "random",
-                "content"  => $rand,
-            );
-
-my $speech= Amazon::Echo::Response::Response::OutputSpeech->new(
-             "text" => "Your luck number is $rand"
-);
-
-# generate response
-my $response = Amazon::Echo::Response::Response->new( 
-            "outputSpeech" => $speech,
-            "card" => $card,
-            "shouldEndSession" => \0
-);
-
+sub text {
+	my $rand     = int rand(100);
+	my $text = "Your luck number is $rand"
+	return $text
+}
 
 # the sub is the app
 sub {
@@ -31,6 +18,6 @@ sub {
     my $env = shift;
     my $req = Amazon::Echo::Request->new($env);
     my $res = $req->response();  
-    $res->speech_text($speech->text);
+    $res->speech_text(text);
     $res->finalize_response;
 };
