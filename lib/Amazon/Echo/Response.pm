@@ -82,8 +82,6 @@ has 'response' => (
     default => sub { Amazon::Echo::Response::Response->new() }
 );
 
-
-
 1;
 __END__
 

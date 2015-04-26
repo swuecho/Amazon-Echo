@@ -1,10 +1,5 @@
 use lib '/home/hwu/Amazon-Echo/lib/';
 use Amazon::Echo::Request;
-use Amazon::Echo::Response::Response;
-use Amazon::Echo::Response::Response::Card;
-use Amazon::Echo::Response::Response::OutputSpeech;
-use JSON::XS;
-use DDP;
 
 sub text {
 	my $rand     = int rand(100);
