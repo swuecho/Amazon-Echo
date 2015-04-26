@@ -19,7 +19,7 @@ our $VERSION = "0.01";
 
 sub BUILDARGS {
     my ( $class, $json ) = @_;
-    return { json => $json, };
+    return { json => $json };
 }
 
 has 'json' => ( isa => 'HashRef', is => 'ro' );

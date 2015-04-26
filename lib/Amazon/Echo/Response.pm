@@ -79,7 +79,7 @@ has 'version' => (
     #required => 1
 );
 
-has 'session_attributes' => (
+has 'sessionAttributes' => (
     isa => 'Hashref',
     is  => 'ro',
 );
