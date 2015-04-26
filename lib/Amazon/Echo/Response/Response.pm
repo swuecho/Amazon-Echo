@@ -1,6 +1,7 @@
 package Amazon::Echo::Response::Response;
 use 5.008001;
 use Moose;
+use Amazon::Echo::Response::Response::OutputSpeech;
 
 our $VERSION = "0.01";
 
@@ -30,13 +31,14 @@ has 'outputSpeech' => (
 
 # booleand TODO
 #
-has 'shouldEndSession' => ( is => 'rw', default => sub { \1 } );
+has 'shouldEndSession' => ( is => 'rw', default => sub { \0 } );
 
 sub TO_JSON {
     my $self = shift;
     return {
-        outputSpeech     => $self->outputSpeech,
-        card             => $self->card,
+        outputSpeech => $self->outputSpeech,
+
+        #        card             => $self->card,
         shouldEndSession => $self->shouldEndSession
     };
 }

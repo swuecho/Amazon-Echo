@@ -37,6 +37,18 @@ sub BUILDARGS {
     return { _plack_response => $plack_response };
 }
 
+sub TO_JSON {
+    my $self = shift;
+    return {
+        version  => $self->version,
+        response => $self->response,
+
+        #response => $self->response
+
+      }
+
+}
+
 has '_plack_response' => (
     isa     => 'Plack::Response',
     is      => 'rw',
@@ -48,7 +60,7 @@ has 'string' =>
 
 sub _build_string {
     my $self                 = shift;
-    my $echo_response_string = $json->encode( $self->response );
+    my $echo_response_string = $json->encode($self);
     return $echo_response_string;
 }
 
@@ -59,6 +71,8 @@ sub finalize_response {
     my $string = $self->string;
     $self->content_length( length $string );
     $self->body($string);
+    use DDP;
+    p $string;
     $self->finalize;
 }
 

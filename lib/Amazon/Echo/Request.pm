@@ -61,7 +61,9 @@ has 'json' =>
   ( isa => 'HashRef', is => 'ro', lazy => 1, builder => '_build_json' );
 
 sub _build_json {
-    my $self         = shift;
+    my $self = shift;
+
+    #todo: uft8
     my $echo_request = decode_json( $self->string );
     return $echo_request;
 }
@@ -78,7 +80,8 @@ has 'session' => (
     is   => 'ro',
     lazy => 1,
     default =>
-      sub { Amazon::Echo::Request::Session->new( shift->json->{session} ) }
+      sub { Amazon::Echo::Request::Session->new( shift->json->{session} ) },
+    handles => [qw(is_new)]
 );
 
 has 'request' => (
@@ -89,6 +92,7 @@ has 'request' => (
     is      => 'rw',
     lazy    => 1,
     builder => '_build_request',
+    handles => [qw(type intent)]
 );
 
 sub _build_request {
