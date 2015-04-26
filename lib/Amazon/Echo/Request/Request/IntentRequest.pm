@@ -21,31 +21,16 @@ our $VERSION = "0.01";
 
 =cut
 
-sub BUILDARGS {
-    my ( $class, $json ) = @_;
-    return { json => $json, };
-}
-
-has 'json' => ( isa => 'HashRef', is => 'ro' );
-
 has 'type' => ( isa => 'Str', is => 'ro', default => 'IntentRequest' );
 
-has 'request_id' => (
+has 'requestId' => (
     isa     => 'Str',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{requestId};
-    }
+    is      => 'ro',
 );
 
 has 'intent' => (
     isa     => 'HashRef',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{intent};
-    }
+    is      => 'ro',
 );
 
 1;

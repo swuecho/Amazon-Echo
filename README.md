@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/swuecho/Amazon-Echo.svg?branch=master)](https://travis-ci.org/swuecho/Amazon-Echo)
 # NAME
 
-Amazon::Echo - alexa!
+Amazon::Echo - It's new $module
 
 # SYNOPSIS
 
@@ -9,7 +9,7 @@ Amazon::Echo - alexa!
 
 # DESCRIPTION
 
-Amazon::Echo is a wrapper around Plack to make develop service for Amazon Echo easy
+Amazon::Echo is ...
 
 # LICENSE
 

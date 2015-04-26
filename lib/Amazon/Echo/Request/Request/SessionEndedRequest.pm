@@ -12,21 +12,11 @@ our $VERSION = "0.01";
 }
 =cut
 
-sub BUILDARGS {
-    my ( $class, $json ) = @_;
-    return { json => $json, };
-}
-
-has 'json' => ( isa => 'HashRef', is => 'ro' );
 
 has 'type' => ( isa => 'Str', is => 'ro', default => 'SessionEndedRequest' );
-has 'request_id' => (
+has 'requestId' => (
     isa     => 'Str',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{requestId};
-    }
+    is      => 'ro',
 );
 
 # USER_INITIATED – Indicates that the user explicitly ended the session.
@@ -35,11 +25,7 @@ has 'request_id' => (
 # or responded with an utterance that did not match any of your app’s intents |
 has 'reason' => (
     isa     => 'Str',
-    is      => 'rw',
-    lazy    => 1,
-    default => sub {
-        shift->json->{resaon};
-    }
+    is      => 'ro',
 );
 
 1;

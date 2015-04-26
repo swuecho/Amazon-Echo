@@ -1,5 +1,5 @@
 use strict;
-use Test::More tests => 4;
+use Test::More tests => 3;
 
 use_ok $_ for qw(
   Amazon::Echo::Request::Request::SessionEndedRequest
@@ -13,7 +13,6 @@ my $json = {
 };
 
 my $req = Amazon::Echo::Request::Request::SessionEndedRequest->new($json);
-is_deeply( $req->json, $json, "get the same json" );
 is( $req->type,       $json->{type},      'not new' );
-is( $req->request_id, $json->{requestId}, 'right request id' );
+is( $req->requestId, $json->{requestId}, 'right request id' );
 

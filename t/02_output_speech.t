@@ -5,13 +5,13 @@ use_ok $_ for qw(
   Amazon::Echo::Response::Response::OutputSpeech
 );
 
-my $card = Amazon::Echo::Response::Response::OutputSpeech->new(
+my $speech = Amazon::Echo::Response::Response::OutputSpeech->new(
     text => 'test text',
 
 );
 
-is( $card->type, 'PlainText', "right default output speech type" );
-is( $card->text, 'test text' );
+is( $speech->type, 'PlainText', "right default output speech type" );
+is( $speech->text, 'test text' );
 
 done_testing;
 
