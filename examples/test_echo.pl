@@ -31,6 +31,6 @@ sub {
     my $env = shift;
     my $req = Amazon::Echo::Request->new($env);
     my $res = $req->response();  
-    $res->response(get_response);
+    $res->response($response);
     $res->finalize_response;
 };
