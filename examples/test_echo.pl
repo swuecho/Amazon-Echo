@@ -1,5 +1,5 @@
+use lib '/home/hwu/Amazon-Echo/lib/';
 use Amazon::Echo::Request;
-use Amazon::Echo::Response::Response;
 use Amazon::Echo::Response::Response::Card;
 use Amazon::Echo::Response::Response::OutputSpeech;
 use JSON::XS;
@@ -16,20 +16,36 @@ my $speech= Amazon::Echo::Response::Response::OutputSpeech->new(
              "text" => "Your luck number is $rand"
 );
 
+p $card->TO_JSON;
+p $speech->TO_JSON;
+
+
 # generate response
- my $response = Amazon::Echo::Response::Response->new( 
+sub get_response {
+    my $response = {
             "outputSpeech" => $speech,
             "card" => $card,
-            "shouldEndSession" => \0
- );
+            "shouldEndSession" => \1
+    };
 
+    return $response;
+}
 
 # the sub is the app
 sub {
     # PSGI env
     my $env = shift;
+
     my $req = Amazon::Echo::Request->new($env);
-    my $res = $req->response();  
-    $res->response($response);
+
+    my $res = $req->response();    # new Plack::Response
+    p $res;
+    $res->response(get_response);
+         #Content-Type: application/json;charset=UTF-8
+    #$res->content_type('application/json');
+    #$res->header( charset => 'UTF-8' );
+    #my $json = get_response_json();
+    #$res->body($json);
+    #$res->content_length( length $json );
     $res->finalize_response;
 };

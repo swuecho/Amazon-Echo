@@ -10,6 +10,8 @@ use Amazon::Echo::Request::Request::SessionEndedRequest;
 
 our $VERSION = "0.01";
 
+my $json = JSON::XS->new->utf8->convert_blessed(1);
+
 =for comment
 {
   "version": "string",
@@ -64,7 +66,7 @@ sub _build_json {
     my $self = shift;
 
     #todo: uft8
-    my $echo_request = decode_json( $self->string );
+    my $echo_request = $json->decode( $self->string );
     return $echo_request;
 }
 

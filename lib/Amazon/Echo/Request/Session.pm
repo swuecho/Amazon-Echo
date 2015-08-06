@@ -35,7 +35,7 @@ has 'sessionId' => (
 );
 
 has 'attributes' => (
-    isa => 'HashRef',
+    isa => 'Maybe[HashRef]',
     is  => 'ro',
 );
 

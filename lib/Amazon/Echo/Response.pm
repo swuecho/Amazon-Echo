@@ -7,7 +7,7 @@ use JSON::XS;
 our $VERSION = "0.01";
 
 with 'Amazon::Echo::TOJSON';
-my $json = JSON::XS->new->convert_blessed(1);
+my $json = JSON::XS->new->utf8->convert_blessed(1);
 
 =for comment
 {
